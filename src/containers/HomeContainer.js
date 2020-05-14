@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import AppFrame from './../components/AppFrame';
 import CustomersActions from './../components/CustomersActions';
@@ -7,9 +7,9 @@ import CustomersActions from './../components/CustomersActions';
 class HomeContainer extends Component {
 
     handleOnClick = () => {
-
+        this.props.history.push('/customers');
     }
-    
+
     render() {
         return (
             <div>
@@ -29,4 +29,4 @@ class HomeContainer extends Component {
     }
 }
 
-export default HomeContainer;
+export default withRouter(HomeContainer);

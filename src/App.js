@@ -7,17 +7,18 @@ import './App.css';
 
 class App extends Component {
 
+  renderHomeContainer = () => <h1>Home</h1>;
+
+  renderCustomerContainer = () => <h1>Customer Container</h1>
+
   renderCustomerListContainer = () => <h1>Customers Lists Container</h1>;
 
   renderCustomerNewContainer = () => <h1>Customer New Container</h1>;
 
+
   render() {
       return (
-        <Router>
-          {/* 
-              <Link to='/customers'>Customers</Link><br></br>
-              <Link to='/customers/30000000'>Customers 30000000</Link>
-          </div> */}
+        <Router>  
           <div className="App">
           <Route exact path='/'               component={HomeContainer}></Route> 
           <Route exact path='/customers'      component={this.renderCustomerListContainer}></Route> 
