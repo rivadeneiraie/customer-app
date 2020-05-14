@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 import AppFrame from './../components/AppFrame';
 import CustomersList from './../components/CustomersList';
@@ -37,7 +38,7 @@ class CustomersContainer extends Component {
     )
 
     handleAddNew = () => {
-        console.log("Agregar nuevo");
+        this.props.history.push('/customers/new');
     }
 
     render() {
@@ -56,4 +57,4 @@ CustomersContainer.propTypes = {
 
 };
 
-export default CustomersContainer;
+export default withRouter(CustomersContainer);
