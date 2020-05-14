@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {  BrowserRouter as Router, Route, Switch } from 'react-router-dom'; //Link,
 
-import HomeContainer from './containers/HomeContainer'
+import HomeContainer from './containers/HomeContainer';
+import CustomersContainer from './containers/CustomersContainer';
 
 import './App.css';
 
@@ -11,7 +12,7 @@ class App extends Component {
 
   renderCustomerContainer = () => <h1>Customer Container</h1>
 
-  renderCustomerListContainer = () => <h1>Customers Lists Container</h1>;
+  renderCustomerListContainer = () => <CustomersContainer></CustomersContainer>;
 
   renderCustomerNewContainer = () => <h1>Customer New Container</h1>;
 
