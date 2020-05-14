@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { Link, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {  BrowserRouter as Router, Route, Switch } from 'react-router-dom'; //Link,
+
+import HomeContainer from './containers/HomeContainer'
 
 import './App.css';
 
 class App extends Component {
-
-  renderHome = () => <h1>Home</h1>;
-
-  renderCustomerContainer = () => <h1>Customer Container</h1>;
 
   renderCustomerListContainer = () => <h1>Customers Lists Container</h1>;
 
@@ -21,7 +19,7 @@ class App extends Component {
               <Link to='/customers/30000000'>Customers 30000000</Link>
           </div> */}
           <div className="App">
-          <Route exact path='/'               component={this.renderHome}></Route> 
+          <Route exact path='/'               component={HomeContainer}></Route> 
           <Route exact path='/customers'      component={this.renderCustomerListContainer}></Route> 
           <Switch>
               <Route  path='/customers/new'  component={this.renderCustomerNewContainer}></Route> 

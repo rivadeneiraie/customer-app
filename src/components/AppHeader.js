@@ -5,7 +5,7 @@ const AppHeader = ({ title }) => {
     return (
         <div>
             <div className='app-header'>
-                <h>{title}</h>
+                <h1>{title}</h1>
             </div>
         </div>
     )
