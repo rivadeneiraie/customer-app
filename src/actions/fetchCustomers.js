@@ -21,4 +21,4 @@ const customers = [
     },
 ];
 
-export const fetchCustomers = createAction(FETCH_CUSTOMERS);
+export const fetchCustomers = createAction(FETCH_CUSTOMERS, () => customers);

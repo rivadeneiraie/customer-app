@@ -52,6 +52,9 @@ CustomersContainer.defaultProps = {
     customers : []
 };
 
+const mapStateToProps = state => ({
+    customers: state.customers,
+});
 
-export default withRouter(connect(null, { fetchCustomers } )(CustomersContainer));
+export default withRouter(connect(mapStateToProps, { fetchCustomers } )(CustomersContainer));
 /** considero mejor el mapDispatchToProps */
