@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+
 import { fetchCustomers } from './../actions/fetchCustomers';
+import { getCustomers } from './../selectors/customers';
 
 import AppFrame from './../components/AppFrame';
 import CustomersList from './../components/CustomersList';
@@ -53,7 +55,7 @@ CustomersContainer.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-    customers: state.customers,
+    customers: getCustomers(state),
 });
 
 export default withRouter(connect(mapStateToProps, { fetchCustomers } )(CustomersContainer));
