@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import AppFrame from './../components/AppFrame';
+import { getCustomByDni } from './../selectors/customers';
 
 class CustomerContainer extends Component {
     render() {
@@ -12,7 +13,7 @@ class CustomerContainer extends Component {
             <div>
                 <AppFrame
                     header={`Cliente ${dni}`}
-                    body={<p>Datos del cliente</p>}
+                    body={<p>Datos del cliente "{this.props.customer.name}"</p>}
                 ></AppFrame>
             </div>
         );
@@ -21,6 +22,11 @@ class CustomerContainer extends Component {
 
 CustomerContainer.propTypes = {
     dni:PropTypes.string.isRequired,
+    customer: PropTypes.object.isRequired,
 };
 
-export default connect(null, null)(CustomerContainer);
+const mapStateToProps = (state, props) => ({
+    customer: getCustomByDni(state, props) ,
+})
+
+export default connect(mapStateToProps, null)(CustomerContainer);
