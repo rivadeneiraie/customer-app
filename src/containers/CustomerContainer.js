@@ -6,10 +6,12 @@ import AppFrame from './../components/AppFrame';
 
 class CustomerContainer extends Component {
     render() {
+        const { dni } = this.props;
+        
         return (
             <div>
                 <AppFrame
-                    header={`Cliente`}
+                    header={`Cliente ${dni}`}
                     body={<p>Datos del cliente</p>}
                 ></AppFrame>
             </div>
@@ -18,7 +20,7 @@ class CustomerContainer extends Component {
 }
 
 CustomerContainer.propTypes = {
-
+    dni:PropTypes.string.isRequired,
 };
 
 export default connect(null, null)(CustomerContainer);

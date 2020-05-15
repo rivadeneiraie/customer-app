@@ -11,7 +11,7 @@ class App extends Component {
 
   renderHomeContainer = () => <h1>Home</h1>;
 
-  renderCustomerContainer = () => <CustomerContainer></CustomerContainer>
+  renderCustomerContainer = (dni) => <CustomerContainer dni={dni}></CustomerContainer>
 
   renderCustomerListContainer = () => <CustomersContainer></CustomersContainer>;
 
@@ -26,8 +26,8 @@ class App extends Component {
           <Route exact path='/customers'      component={this.renderCustomerListContainer}></Route> 
           <Switch>
               <Route  path='/customers/new'  component={this.renderCustomerNewContainer}></Route> 
-              <Route  path='/customers/:dni' component={this.renderCustomerContainer}></Route> 
-            </Switch>
+              <Route  path='/customers/:dni' render={props => this.renderCustomerContainer(props.match.params.dni)}></Route> 
+          </Switch>
           </div>
         </Router>
       );
