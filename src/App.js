@@ -3,6 +3,7 @@ import {  BrowserRouter as Router, Route, Switch } from 'react-router-dom'; //Li
 
 import HomeContainer from './containers/HomeContainer';
 import CustomersContainer from './containers/CustomersContainer';
+import CustomerContainer from './containers/CustomerContainer';
 
 import './App.css';
 
@@ -10,7 +11,7 @@ class App extends Component {
 
   renderHomeContainer = () => <h1>Home</h1>;
 
-  renderCustomerContainer = () => <h1>Customer Container</h1>
+  renderCustomerContainer = () => <CustomerContainer></CustomerContainer>
 
   renderCustomerListContainer = () => <CustomersContainer></CustomersContainer>;
 
