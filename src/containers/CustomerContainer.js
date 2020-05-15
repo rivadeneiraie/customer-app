@@ -1,19 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Route } from 'react-router-dom';
 
 import AppFrame from './../components/AppFrame';
+import CustomerData from './../components/CustomerData';
+import CustomerEdit from './../components/CustomerEdit';
 import { getCustomByDni } from './../selectors/customers';
 
 class CustomerContainer extends Component {
+
+    renderBody = (customer) => (
+        <Route path="/customers/:dni/edit" children={
+            ( { match } ) => {
+                const CustomerControl = match ? CustomerEdit: CustomerData;
+                return <CustomerControl {...customer} />
+            }
+
+        } />
+    )
+
     render() {
-        const { dni } = this.props;
-        
+        const { dni, customer } = this.props;
         return (
             <div>
                 <AppFrame
                     header={`Cliente ${dni}`}
-                    body={<p>Datos del cliente "{this.props.customer.name}"</p>}
+                    body={this.renderBody(customer)}
                 ></AppFrame>
             </div>
         );
