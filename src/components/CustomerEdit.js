@@ -7,9 +7,14 @@ const isRequired = value => (
     !value && "Este campo es requerido"
 );
 
-const MyField = ({ input, meta }) => (
+const isNumber = value => (
+    isNaN(Number(value)) && "El campo debe ser un número"
+);
+
+const MyField = ({ input, meta, type, label, name }) => (
     <div>
-        <input {...input} type="text"></input>
+        <label htmlFor={name}>{label}</label>
+        <input {...input} type={ !type ? "text" : type }></input>
         {
             meta.touched && meta.error && <span>{meta.error}</span> 
         }
@@ -21,32 +26,27 @@ const CustomerEdit = ({name, dni, age}) => {
         <div>
             <h2>Edición del cliente</h2>
             <form action="">
-                <div>
-                    <label htmlFor="name">Nombre:</label>
-                    <Field
-                        name="name"
-                        component={MyField}
-                        type="text"
-                        validate={isRequired}
-                    ></Field>
-                </div>
-                <div>
-                    <label htmlFor="dni">Dni:</label>
-                    <Field
-                        name="dni"
-                        component={MyField}
-                        type="text"
-                        validate={isRequired}
-                    ></Field>
-                </div>
-                <div>
-                    <label htmlFor="age">Edad:</label>
-                    <Field
-                        name="age"
-                        component="input"
-                        type="number"
-                    ></Field>
-                </div>
+                <Field
+                    name="name"
+                    component={MyField}
+                    type="text"
+                    validate={isRequired}
+                    label="Nombre:"
+                ></Field>
+                <Field
+                    name="dni"
+                    component={MyField}
+                    type="text"
+                    validate={ [ isRequired, isNumber ] }
+                    label="Dni:"
+                ></Field>
+                <Field
+                    name="age"
+                    component={MyField}
+                    type="number"
+                    validate={isNumber}
+                    label="Edad:"
+                ></Field>
             </form>
         </div>
     );
