@@ -32,12 +32,12 @@ const MyField = ({ input, meta, type, label, name }) => (
         }
     </div>
 );
-
-const CustomerEdit = ({name, dni, age}) => {
+/** las propuedades pasadas como parametros son de redux-form tiene que lamarse así */
+const CustomerEdit = ({name, dni, age, handleSubmit, submitting}) => {
     return (
         <div>
             <h2>Edición del cliente</h2>
-            <form action="">
+            <form onSubmit={handleSubmit}> 
                 <Field
                     name="name"
                     component={MyField}
@@ -58,7 +58,7 @@ const CustomerEdit = ({name, dni, age}) => {
                     label="Edad:"
                 ></Field>
                 <CustomersActions>
-                    <button type="submit">Aceptar</button>
+                    <button type="submit" disabled={submitting}>Aceptar</button>
                 </CustomersActions>
             </form>
         </div>

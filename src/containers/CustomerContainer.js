@@ -10,11 +10,15 @@ import { getCustomByDni } from './../selectors/customers';
 
 class CustomerContainer extends Component {
 
+    handleSubmit = values => {
+        console.log(JSON.stringify(values));
+    }
+
     renderBody = (customer) => (
         <Route path="/customers/:dni/edit" children={
             ( { match } ) => {
                 const CustomerControl = match ? CustomerEdit: CustomerData;
-                return <CustomerControl {...customer} />
+                return <CustomerControl {...customer} onSubmit={this.handleSubmit} />
             }
 
         } />
