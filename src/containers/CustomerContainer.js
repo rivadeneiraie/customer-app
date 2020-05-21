@@ -8,6 +8,7 @@ import CustomerData from './../components/CustomerData';
 import CustomerEdit from './../components/CustomerEdit';
 import { getCustomByDni } from './../selectors/customers';
 import { fetchCustomers } from './../actions/fetchCustomers';
+import { updateCustomer } from './../actions/updateCustomer';
 
 class CustomerContainer extends Component {
 
@@ -19,6 +20,8 @@ class CustomerContainer extends Component {
 
     handleSubmit = values => {
         console.log(JSON.stringify(values));
+        const { id } = values;
+        this.props.updateCustomer(id, values)
     }
 
     handleOnBack = () => {
@@ -54,12 +57,13 @@ class CustomerContainer extends Component {
 
 CustomerContainer.propTypes = {
     dni:PropTypes.string.isRequired,
-    customer: PropTypes.object.isRequired,
+    customer: PropTypes.object,
     fetchCustomers: PropTypes.func.isRequired,
+    updateCustomer: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, props) => ({
     customer: getCustomByDni(state, props) ,
 })
 
-export default withRouter(connect(mapStateToProps, { fetchCustomers })(CustomerContainer));
+export default withRouter(connect(mapStateToProps, { fetchCustomers, updateCustomer })(CustomerContainer));
