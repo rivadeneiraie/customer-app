@@ -24,6 +24,10 @@ class CustomerContainer extends Component {
         return this.props.updateCustomer(id, values) //se pone return par que funciona el submitting
     }
 
+    handleOnSubmitSuccess = () => {
+        this.props.history.goBack();
+    }
+
     handleOnBack = () => {
         this.props.history.goBack();
     }
@@ -35,6 +39,7 @@ class CustomerContainer extends Component {
                 return <CustomerControl 
                             {...customer} 
                             onSubmit={this.handleSubmit} 
+                            onSubmitSuccess={this.handleOnSubmitSuccess}
                             onBack={this.handleOnBack}
                         />
             }
