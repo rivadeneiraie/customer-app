@@ -21,7 +21,7 @@ class CustomerContainer extends Component {
     handleSubmit = values => {
         console.log(JSON.stringify(values));
         const { id } = values;
-        return this.props.updateCustomer(id, values)
+        return this.props.updateCustomer(id, values) //se pone return par que funciona el submitting
     }
 
     handleOnBack = () => {
