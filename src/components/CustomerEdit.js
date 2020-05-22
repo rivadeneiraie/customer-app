@@ -23,18 +23,6 @@ const isNumber = value => (
     isNaN(Number(value)) && "El campo debe ser un número"
 );
 
-const toNumber = value => (
-    value && Number(value)
-)
-
-const toUpper = value => (
-    value && value.toUpperCase()  
-)
-
-const toLower = value => (
-    value && value.toLowerCase()
-)
-
 const MyField = ({ input, meta, type, label, name }) => (
     <div>
         <label htmlFor={name}>{label}</label>
@@ -44,6 +32,14 @@ const MyField = ({ input, meta, type, label, name }) => (
         }
     </div>
 );
+
+const toNumber = value => ( value && Number(value) )
+const toUpper = value => ( value && value.toUpperCase()  )
+const toLower = value => ( value && value.toLowerCase() )
+const onlyGrow = (value, previousValue, values) => ( 
+    value && previousValue && (value > previousValue ? value : previousValue) 
+)
+
 
 /** las propuedades pasadas como parametros son de redux-form tiene que lamarse así */
 const CustomerEdit = ({name, dni, age, handleSubmit, submitting, onBack}) => {
@@ -72,6 +68,7 @@ const CustomerEdit = ({name, dni, age, handleSubmit, submitting, onBack}) => {
                     validate={isNumber}
                     label="Edad:"
                     parse={toNumber}
+                    normalize={onlyGrow} //funcion que se ejcuta posterior a parse
                 ></Field>
                 <CustomersActions>
                     <button type="submit" disabled={submitting}>Aceptar</button>
