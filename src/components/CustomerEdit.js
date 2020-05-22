@@ -23,6 +23,18 @@ const isNumber = value => (
     isNaN(Number(value)) && "El campo debe ser un número"
 );
 
+const toNumber = value => (
+    value && Number(value)
+)
+
+const toUpper = value => (
+    value && value.toUpperCase()  
+)
+
+const toLower = value => (
+    value && value.toLowerCase()
+)
+
 const MyField = ({ input, meta, type, label, name }) => (
     <div>
         <label htmlFor={name}>{label}</label>
@@ -32,6 +44,7 @@ const MyField = ({ input, meta, type, label, name }) => (
         }
     </div>
 );
+
 /** las propuedades pasadas como parametros son de redux-form tiene que lamarse así */
 const CustomerEdit = ({name, dni, age, handleSubmit, submitting, onBack}) => {
     return (
@@ -43,6 +56,8 @@ const CustomerEdit = ({name, dni, age, handleSubmit, submitting, onBack}) => {
                     component={MyField}
                     type="text"
                     label="Nombre:"
+                    parse={toUpper} //ambos de complementan
+                    format={toLower} //el primero es para guardar el otro para mostrar
                 ></Field>
                 <Field
                     name="dni"
@@ -56,6 +71,7 @@ const CustomerEdit = ({name, dni, age, handleSubmit, submitting, onBack}) => {
                     type="number"
                     validate={isNumber}
                     label="Edad:"
+                    parse={toNumber}
                 ></Field>
                 <CustomersActions>
                     <button type="submit" disabled={submitting}>Aceptar</button>
