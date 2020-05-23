@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Route, withRouter } from 'react-router-dom';
+import { SubmissionError } from 'redux-form';
 
 import AppFrame from './../components/AppFrame';
 import CustomerData from './../components/CustomerData';
@@ -9,6 +10,7 @@ import CustomerEdit from './../components/CustomerEdit';
 import { getCustomByDni } from './../selectors/customers';
 import { fetchCustomers } from './../actions/fetchCustomers';
 import { updateCustomer } from './../actions/updateCustomer';
+
 
 class CustomerContainer extends Component {
 
@@ -18,10 +20,17 @@ class CustomerContainer extends Component {
         }
     }
 
+    //se pone return par que funciona el submitting
     handleSubmit = values => {
-        console.log(JSON.stringify(values));
         const { id } = values;
-        return this.props.updateCustomer(id, values) //se pone return par que funciona el submitting
+        return this.props.updateCustomer(id, values) 
+             .catch(
+                r => {
+                    if (r.error) {
+                        throw new SubmissionError(r.validation);
+                    }
+                }
+            )
     }
 
     handleOnSubmitSuccess = () => {
@@ -35,13 +44,18 @@ class CustomerContainer extends Component {
     renderBody = (customer) => (
         <Route path="/customers/:dni/edit" children={
             ( { match } ) => {
-                const CustomerControl = match ? CustomerEdit: CustomerData;
-                return <CustomerControl 
-                            {...customer} 
-                            onSubmit={this.handleSubmit} 
-                            onSubmitSuccess={this.handleOnSubmitSuccess}
-                            onBack={this.handleOnBack}
-                        />
+                if (customer)
+                {
+                    const CustomerControl = match ? CustomerEdit: CustomerData;
+                    return <CustomerControl 
+                                {...customer} 
+                                onSubmit={this.handleSubmit} 
+                                onSubmitSuccess={this.handleOnSubmitSuccess}
+                                onBack={this.handleOnBack}
+                            />
+                } else {
+                    return null
+                }
             }
 
         } />
