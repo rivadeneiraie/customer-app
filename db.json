@@ -7,30 +7,6 @@
       "id": "30000001"
     },
     {
-      "id": "30000000",
-      "dni": "30000000",
-      "name": "OTROS",
-      "age": 35
-    },
-    {
-      "dni": "33000000",
-      "name": "prueba postman",
-      "age": 35,
-      "id": "33000000"
-    },
-    {
-      "id": "35202225",
-      "dni": "35202225",
-      "name": "Ivan Rivadeneira",
-      "age": 30
-    },
-    {
-      "id": "Ow3T_nV",
-      "name": "MAYRA RIVAS NUEVO",
-      "dni": "25000111",
-      "age": 16
-    },
-    {
       "id": "Z_awJZw",
       "name": "POTY",
       "dni": "32856896",
@@ -41,6 +17,12 @@
       "name": "IRMA BOLAINAS",
       "dni": "127894586",
       "age": 15
+    },
+    {
+      "id": "mQ6jAad",
+      "name": "IVAN ESTEBAN RIVADENEIRA",
+      "dni": "35202225",
+      "age": 18
     }
   ],
   "posts": [

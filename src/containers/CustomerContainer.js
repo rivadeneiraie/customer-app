@@ -10,6 +10,7 @@ import CustomerEdit from './../components/CustomerEdit';
 import { getCustomByDni } from './../selectors/customers';
 import { fetchCustomers } from './../actions/fetchCustomers';
 import { updateCustomer } from './../actions/updateCustomer';
+import { deleteCustomer } from './../actions/deleteCurstomer';
 
 
 class CustomerContainer extends Component {
@@ -41,8 +42,10 @@ class CustomerContainer extends Component {
         this.props.history.goBack();
     }
 
-    handleOnDelete = () => {
-        console.log("habldeonsubmir");
+    handleOnDelete = id => {
+        this.props.deleteCustomer(id).then(
+            v => this.props.history.goBack()
+        );
     }
 
     renderCustomerControl = (customer, idEdit, isDelete) => {
@@ -96,10 +99,11 @@ CustomerContainer.propTypes = {
     customer: PropTypes.object,
     fetchCustomers: PropTypes.func.isRequired,
     updateCustomer: PropTypes.func.isRequired,
+    deleteCustomer: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, props) => ({
     customer: getCustomByDni(state, props) ,
 })
 
-export default withRouter(connect(mapStateToProps, { fetchCustomers, updateCustomer })(CustomerContainer));
+export default withRouter(connect(mapStateToProps, { fetchCustomers, updateCustomer, deleteCustomer })(CustomerContainer));

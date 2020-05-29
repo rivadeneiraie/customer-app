@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 
-import { FETCH_CUSTOMERS, INSERT_CUSTOMERS, UPDATE_CUSTOMERS } from './../constants';
+import { FETCH_CUSTOMERS, INSERT_CUSTOMERS, UPDATE_CUSTOMERS, DELETE_CUSTOMERS } from './../constants';
 
 export const customers = handleActions(
     {
@@ -26,7 +26,8 @@ export const customers = handleActions(
             , initialValue);
 
             return newCustomers;
-        }
+        },
+        [DELETE_CUSTOMERS]: (state, action) => state.filter(c => c.id !== action.payload),
     },
     [] /** valor por defecto, inicial. */
 );
