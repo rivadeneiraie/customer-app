@@ -41,22 +41,39 @@ class CustomerContainer extends Component {
         this.props.history.goBack();
     }
 
+    handleOnDelete = () => {
+        console.log("habldeonsubmir");
+    }
+
+    renderCustomerControl = (customer, idEdit, isDelete) => {
+        if (customer)
+        {
+            const CustomerControl = idEdit ? CustomerEdit: CustomerData;
+            return <CustomerControl 
+                        {...customer} 
+                        onSubmit={this.handleSubmit} 
+                        onSubmitSuccess={this.handleOnSubmitSuccess}
+                        onBack={this.handleOnBack}
+                        isDeleteAllow={!!isDelete}
+                        onDelete={this.handleOnDelete}
+                    />
+        } else {
+            return null
+        }
+    }
+
     renderBody = (customer) => (
         <Route path="/customers/:dni/edit" children={
-            ( { match } ) => {
-                if (customer)
-                {
-                    const CustomerControl = match ? CustomerEdit: CustomerData;
-                    return <CustomerControl 
-                                {...customer} 
-                                onSubmit={this.handleSubmit} 
-                                onSubmitSuccess={this.handleOnSubmitSuccess}
-                                onBack={this.handleOnBack}
-                            />
-                } else {
-                    return null
-                }
-            }
+            ( { match : idEdit } ) => (
+                
+                <Route path="/customers/:dni/del" children={
+                    ( { match : idDelete } ) => (
+
+                        this.renderCustomerControl(customer, idEdit, idDelete)
+                    )
+        
+                } />
+            )
 
         } />
     )
