@@ -1,12 +1,6 @@
 {
   "customers": [
     {
-      "dni": "30000010",
-      "name": "CALOS RIVAS",
-      "age": 80,
-      "id": "30000001"
-    },
-    {
       "id": "Z_awJZw",
       "name": "POTY",
       "dni": "32856896",

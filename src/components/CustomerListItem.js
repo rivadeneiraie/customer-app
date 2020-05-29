@@ -4,19 +4,17 @@ import { Link } from 'react-router-dom';
 
 const CustomerListItem = ({dni, name, editAction, delAction, urlPath}) => {
     return (
-        <div>
             <div className='customers-list-item'>
-                <div className="">
+                <div className="field">
                     <Link to={`${urlPath}${dni}`}>{name}</Link>
                 </div>
-                <div className="">
+                <div className="field">
                     <Link to={`${urlPath}${dni}/edit`}>{editAction}</Link>
                 </div>
-                <div className="">
+                <div className="field">
                     <Link to={`${urlPath}${dni}/del`}>{delAction}</Link>
                 </div>
             </div>
-        </div>
     );
 };
 
