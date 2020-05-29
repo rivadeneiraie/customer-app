@@ -4,25 +4,26 @@ import {  BrowserRouter as Router, Route, Switch } from 'react-router-dom'; //Li
 import HomeContainer from './containers/HomeContainer';
 import CustomersContainer from './containers/CustomersContainer';
 import CustomerContainer from './containers/CustomerContainer';
+import NewCustomerContainer from './containers/NewCustomerContainer';
 
 import './App.css';
 
 class App extends Component {
 
-  renderHomeContainer = () => <h1>Home</h1>;
+  renderHomeContainer = () => <HomeContainer></HomeContainer>;
 
   renderCustomerContainer = (dni) => <CustomerContainer dni={dni}></CustomerContainer>
 
   renderCustomerListContainer = () => <CustomersContainer></CustomersContainer>;
 
-  renderCustomerNewContainer = () => <h1>Customer New Container</h1>;
+  renderCustomerNewContainer = () => <NewCustomerContainer></NewCustomerContainer>;
 
 
   render() {
       return (
         <Router>  
           <div className="App">
-          <Route exact path='/'               component={HomeContainer}></Route> 
+          <Route exact path='/'               component={this.renderHomeContainer}></Route> 
           <Route exact path='/customers'      component={this.renderCustomerListContainer}></Route> 
           <Switch>
               <Route  path='/customers/new'  component={this.renderCustomerNewContainer}></Route> 

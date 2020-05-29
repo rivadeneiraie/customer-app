@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
 import { setPropsAsInitial } from './../helpers/setPropsAsInitial';
 import CustomersActions from './CustomersActions';
+import { Prompt } from 'react-router-dom';
 
 const validate = values => {
     const error = {};
@@ -37,12 +38,12 @@ const toNumber = value => ( value && Number(value) )
 const toUpper = value => ( value && value.toUpperCase()  )
 const toLower = value => ( value && value.toLowerCase() )
 const onlyGrow = (value, previousValue, values) => ( 
-    value && previousValue && (value > previousValue ? value : previousValue) 
+    value && (!previousValue ? value : (value > previousValue ? value : previousValue) )
 )
 
 
 /** las propuedades pasadas como parametros son de redux-form tiene que lamarse así */
-const CustomerEdit = ({name, dni, age, handleSubmit, submitting, onBack}) => {
+const CustomerEdit = ({name, dni, age, handleSubmit, submitting, onBack, pristine, SubmitSucceeded}) => {
     return (
         <div>
             <h2>Edición del cliente</h2>
@@ -71,9 +72,13 @@ const CustomerEdit = ({name, dni, age, handleSubmit, submitting, onBack}) => {
                     normalize={onlyGrow} //funcion que se ejcuta posterior a parse
                 ></Field>
                 <CustomersActions>
-                    <button type="submit" disabled={submitting}>Aceptar</button>
-                    <button onClick={onBack}>Cancelar</button>
+                    <button type="submit" disabled={pristine || submitting}>Aceptar</button>
+                    <button type="button" disabled={submitting} onClick={onBack}>Cancelar</button>
                 </CustomersActions>
+                <Prompt
+                    when={!pristine && !SubmitSucceeded} //el primero indica si el formulario cambio en algo y el segundo  si yua no se envió el formulario
+                    message={"Se perderán los datos si continúa"}
+                ></Prompt>
             </form>
         </div>
     );
